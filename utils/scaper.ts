@@ -82,9 +82,13 @@ async function scraper(dramaTitle: String) {
         for (let tag in ep_wrapper_tag) {
             const a_tag = htmlSoup(ep_wrapper_tag[tag])
 
+            // title of the ep
             const title = a_tag.find('h3').text()
+            // episode link
             const link = `${base_url}${ep_wrapper_tag[tag].attribs.href}`
+            // updated time of the episode
             const upload_time = a_tag.find('.time').text()
+            // type of the episode 'raw' or 'sub'
             const type = a_tag.find('.type').text()
 
             // getting streaming link for this episode
