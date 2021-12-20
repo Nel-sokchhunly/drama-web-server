@@ -1,3 +1,5 @@
+import DramaList from "./models/drama";
+
 require("dotenv").config();
 
 import express from "express";
@@ -24,7 +26,19 @@ DatabaseConnect(() => {
 })
 
 app.get("/", async (req, res) => {
-    res.send("dramas");
+    /*
+    * This endpoint use for getting all the drama that stored in the database
+    *
+    * :return: all drama stored in the database
+    */
+
+    const dramasList = await DramaList.find({})
+    if (dramasList) {
+        res.send(dramasList);
+    } else {
+        res.status(500).send("There is broken on the database")
+    }
+
 });
 
 // connecting route
