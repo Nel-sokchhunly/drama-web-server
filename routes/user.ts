@@ -18,7 +18,7 @@ router.get("/:user", async (req, res) => {
         'username': userParam
     })
     if (userData) {
-        res.send(userData)
+        res.send(userData[0])
     } else {
         const errorMsg = "The user doesn't exist on the database"
         res.status(404).send(errorMsg)
