@@ -3,7 +3,7 @@ import DramaList from "./models/drama";
 require("dotenv").config();
 
 import express from "express";
-import morgan from 'morgan';
+import morgan from "morgan";
 
 // database
 import DatabaseConnect from "./models/dbconfig";
@@ -15,7 +15,7 @@ import user from "./routes/user";
 // initializing express app
 const app = express();
 app.use(express.json());
-app.use(morgan('dev'))
+app.use(morgan("dev"));
 
 // listen for request
 const port = process.env.PORT;
@@ -23,22 +23,21 @@ DatabaseConnect(() => {
     app.listen(port, () => {
         console.log(`server is running on ${port}`);
     });
-})
+});
 
 app.get("/", async (req, res) => {
     /*
-    * This endpoint use for getting all the drama that stored in the database
-    *
-    * :return: all drama stored in the database
-    */
+     * This endpoint use for getting all the drama that stored in the database
+     *
+     * :return: all drama stored in the database
+     */
 
-    const dramasList = await DramaList.find({})
+    const dramasList = await DramaList.find({});
     if (dramasList) {
         res.send(dramasList);
     } else {
-        res.status(500).send("There is broken on the database")
+        res.status(500).send("There is broken on the database");
     }
-
 });
 
 // connecting route
