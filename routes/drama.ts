@@ -69,7 +69,7 @@ router.get("/:dramas", async (req, res) => {
         }
     }
 
-    // res.send(userDrama);
+    res.send(userDrama);
 });
 
 export = router;
